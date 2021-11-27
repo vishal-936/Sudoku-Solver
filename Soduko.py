@@ -1,13 +1,9 @@
-
-board=[[0,0,0,0,0,0,6,8,0],
-       [0,0,0,0,7,3,0,0,9],
-       [3,0,9,0,0,0,0,4,5],
-       [4,9,0,0,0,0,0,0,0],
-       [8,0,3,0,5,0,9,0,2],
-       [0,0,0,0,0,0,0,3,6],
-       [9,6,0,0,0,0,3,0,8],
-       [7,0,0,6,8,0,0,0,0],
-       [0,2,8,0,0,0,0,0,0]]
+board=[]
+print("Enter board (if value is empty enter 0)")
+t=len
+for i in range(9):
+    board.append(list(map(int,input().split())))
+print('---------------------------------------------------')
 
 def print_board(bo):
     t=len
@@ -41,6 +37,7 @@ def isvalid(bo,num,pos):
         if bo[x][j]==num and j!=y:
             return False
     #Checking  3 X 3  cube that if there are no duplicates
+
     box_row=x//3
     box_col=y//3
     for i in range(3*box_row,3*(box_row+1)):
@@ -56,7 +53,7 @@ def solve_soduko(bo):
         return True
     else:
         row,col=f
-    for i in range(1,10):
+    for i in range(1,len(bo)+1):
         
         if isvalid(bo,i,(row,col)):
             bo[row][col]=i
@@ -67,7 +64,8 @@ def solve_soduko(bo):
                 bo[row][col]=0 
     return False
 
+print('Given board')
 print_board(board)
 print("After Solving....",'\n')
 solve_soduko(board)
-print_board(board)                     
+print_board(board) 
